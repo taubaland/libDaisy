@@ -256,6 +256,7 @@
     <ClCompile Include="src\daisy_seed.cpp" />
     <ClCompile Include="src\daisy_versio.cpp" />
     <ClCompile Include="src\daisy_legio.cpp" />
+    <ClCompile Include="src\daisy_boonta.cpp" />
     <ClCompile Include="src\dev\codec_ak4556.cpp" />
     <ClCompile Include="src\dev\codec_pcm3060.cpp" />
     <ClCompile Include="src\dev\codec_wm8731.cpp" />

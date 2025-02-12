@@ -142,6 +142,9 @@
     <ClCompile Include="src\daisy_legio.cpp">
       <Filter>boards</Filter>
     </ClCompile>
+    <ClCompile Include="src\daisy_boonta.cpp">
+    <Filter>boards</Filter>
+    </ClCompile>
     <ClCompile Include="src\dev\codec_pcm3060.cpp">
       <Filter>dev</Filter>
     </ClCompile>

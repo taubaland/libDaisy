@@ -27,6 +27,7 @@ daisy_petal \
 daisy_field \
 daisy_versio \
 daisy_legio \
+daisy_boonta \
 daisy_patch_sm \
 sys/fatfs \
 sys/system \

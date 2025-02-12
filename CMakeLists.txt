@@ -48,6 +48,7 @@ add_library(daisy STATIC
     ${MODULE_DIR}/daisy_pod.cpp
     ${MODULE_DIR}/daisy_seed.cpp
     ${MODULE_DIR}/daisy_versio.cpp
+    ${MODULE_DIR}/daisy_boonta.cpp
     ${MODULE_DIR}/dev/codec_ak4556.cpp
     ${MODULE_DIR}/dev/codec_pcm3060.cpp
     ${MODULE_DIR}/dev/codec_wm8731.cpp

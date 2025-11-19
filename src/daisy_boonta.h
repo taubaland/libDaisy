@@ -16,9 +16,18 @@ class DaisyBoonta
     /** Switches */
     enum TogSw
     {
+<<<<<<< HEAD
         TOG_SW_1,   /**< Toggle */
         TOG_SW_2,   /**< Toggle */
         TOG_SW_3,   /**< Toggle */
+=======
+        TOG_SW_1_A,   /**< Toggle */
+        TOG_SW_1_B,   /**< Toggle */
+        TOG_SW_2_A,   /**< Toggle */
+        TOG_SW_2_B,   /**< Toggle */
+        TOG_SW_3_A,   /**< Toggle */
+        TOG_SW_3_B,   /**< Toggle */
+>>>>>>> d28d6fcf3816e5d2f2936a3b5496f318c52c12d3
         TOG_SW_LAST, /**< Last enum item */
     };
 
@@ -165,6 +174,7 @@ class DaisyBoonta
     /**
       Set Select LED colors
       \param idx Index to set
+<<<<<<< HEAD
       \param color Color
     */
     void SetFootSwitchLed(FootSwitchLed idx, Color color);
@@ -172,12 +182,15 @@ class DaisyBoonta
     /**
       Set Select LED colors
       \param idx Index to set
+=======
+>>>>>>> d28d6fcf3816e5d2f2936a3b5496f318c52c12d3
       \param r Red value
       \param g Green value
       \param b Blue value
     */
     void SetSelectLed(SelectLed idx, float r, float g, float b);
 
+<<<<<<< HEAD
     /**
       Set Select LED colors
       \param idx Index to set
@@ -218,6 +231,8 @@ class DaisyBoonta
 
 
 
+=======
+>>>>>>> d28d6fcf3816e5d2f2936a3b5496f318c52c12d3
     DaisySeed seed;    /**< & */
 
     MidiUartHandler midi;                             /**< Handles midi*/
@@ -225,14 +240,24 @@ class DaisyBoonta
     AnalogControl knob[KNOB_LAST]; /**< & */
     AnalogControl expression;      /**< & */
     Switch        switches[SW_LAST]; /**< & */
+<<<<<<< HEAD
     Switch3       toggle_switches[TOG_SW_LAST]; /**< & */
+=======
+    Switch3       toggle_switches[TOG_SW_LAST / 2]; /**< & */
+>>>>>>> d28d6fcf3816e5d2f2936a3b5496f318c52c12d3
 
     RgbLed    footswitch_led[FOOTSWITCH_LED_LAST]; /**< & */
     RgbLed    select_led[SELECT_LED_LAST]; /**< & */
     
+<<<<<<< HEAD
     GPIO relay_output; /**< &  */
     GPIO relay_bypass; /**< &  */
     GPIO relay_input;  /**< &  */
+=======
+    dsy_gpio relay_output; /**< &  */
+    dsy_gpio relay_bypass; /**< &  */
+    dsy_gpio relay_input;  /**< &  */
+>>>>>>> d28d6fcf3816e5d2f2936a3b5496f318c52c12d3
 
   private:
     void SetHidUpdateRates();
@@ -243,6 +268,10 @@ class DaisyBoonta
     void ReadMidi();
     void InitRelays();
     void InitAnalogControls();
+<<<<<<< HEAD
+=======
+    void SetRelay(dsy_gpio, bool);
+>>>>>>> d28d6fcf3816e5d2f2936a3b5496f318c52c12d3
 
     inline uint16_t* adc_ptr(const uint8_t chn) { return seed.adc.GetPtr(chn); }
 

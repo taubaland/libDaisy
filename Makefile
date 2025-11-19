@@ -49,7 +49,6 @@ hid/rgb_led \
 hid/switch \
 hid/usb \
 hid/usb_midi \
-hid/wavplayer \
 hid/logger \
 hid/usb_host \
 per/adc \
@@ -299,6 +298,9 @@ C_DEFS =  \
 -DUSE_FULL_LL_DRIVER \
 -DDATA_IN_D2_SRAM
 # ^ added for easy startup access
+
+# File I/O Abstract Interface for FatFS:
+C_DEFS += -DFILEIO_ENABLE_FATFS_READER
 
 C_INCLUDES = \
 -I$(MODULE_DIR) \

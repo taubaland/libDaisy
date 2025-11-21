@@ -225,7 +225,6 @@ void DaisyBoonta::SetFootSwitchLed(FootSwitchLed idx, float r, float g, float b)
     led_driver_.SetLed(b_addr[idx], b);
 }
 
-<<<<<<< HEAD
 void DaisyBoonta::SetFootSwitchLed(FootSwitchLed idx, Color color)
 {
     float r, g, b;
@@ -235,8 +234,6 @@ void DaisyBoonta::SetFootSwitchLed(FootSwitchLed idx, Color color)
     SetFootSwitchLed(idx, r, g, b);
 }
 
-=======
->>>>>>> d28d6fcf3816e5d2f2936a3b5496f318c52c12d3
 void DaisyBoonta::SetSelectLed(SelectLed idx, float r, float g, float b)
 {
     uint8_t r_addr[SELECT_LED_LAST] = { LED_SELECT_1_R,
@@ -254,7 +251,6 @@ void DaisyBoonta::SetSelectLed(SelectLed idx, float r, float g, float b)
     led_driver_.SetLed(b_addr[idx], b);
 }
 
-<<<<<<< HEAD
 void DaisyBoonta::SetSelectLed(SelectLed idx, Color color)
 {
     float r, g, b;
@@ -267,11 +263,6 @@ void DaisyBoonta::SetSelectLed(SelectLed idx, Color color)
 void DaisyBoonta::InitSwitches()
 {
     constexpr Pin pin_numbers[TOG_SW_LAST * 2] = {
-=======
-void DaisyBoonta::InitSwitches()
-{
-    constexpr Pin pin_numbers[TOG_SW_LAST] = {
->>>>>>> d28d6fcf3816e5d2f2936a3b5496f318c52c12d3
         TOG_SW_1_A_PIN, 
         TOG_SW_1_B_PIN, 
         TOG_SW_2_A_PIN, 
@@ -346,7 +337,6 @@ void DaisyBoonta::InitMidi()
 void DaisyBoonta::InitRelays()
 {
     // Relay Output
-<<<<<<< HEAD
     relay_output.Init(PIN_RELAY_OUT, GPIO::Mode::OUTPUT, GPIO::Pull::NOPULL);
 
     // Relay Bypass
@@ -355,20 +345,6 @@ void DaisyBoonta::InitRelays()
     // Relay Input
     relay_input.Init(PIN_RELAY_IN, GPIO::Mode::OUTPUT, GPIO::Pull::NOPULL);
 
-    // relay_output.pin  = PIN_RELAY_OUT;
-    // relay_output.mode = DSY_GPIO_MODE_OUTPUT_PP;
-    // relay_output.pull = DSY_GPIO_NOPULL;
-    // dsy_gpio_init(&relay_output);
-    
-    // relay_bypass.pin  = PIN_RELAY_BYPASS;
-    // relay_bypass.mode = DSY_GPIO_MODE_OUTPUT_PP;
-    // relay_bypass.pull = DSY_GPIO_NOPULL;
-    // dsy_gpio_init(&relay_bypass);
-
-    // relay_input.pin  = PIN_RELAY_IN;
-    // relay_input.mode = DSY_GPIO_MODE_OUTPUT_PP;
-    // relay_input.pull = DSY_GPIO_NOPULL;
-    // dsy_gpio_init(&relay_input);
 }
 
 void DaisyBoonta::SetRelay(GPIO relay, bool state)
@@ -400,27 +376,4 @@ bool DaisyBoonta::CheckButtonLongPress(Sw s)
     size_t idx;
     idx = s < SW_LAST ? s : TOG_SW_1;
     return (switches[idx].TimeHeldMs() > 500);
-=======
-    relay_output.pin  = PIN_RELAY_OUT;
-    relay_output.mode = DSY_GPIO_MODE_OUTPUT_PP;
-    relay_output.pull = DSY_GPIO_NOPULL;
-    dsy_gpio_init(&relay_output);
-
-    // Relay Bypass
-    relay_bypass.pin  = PIN_RELAY_BYPASS;
-    relay_bypass.mode = DSY_GPIO_MODE_OUTPUT_PP;
-    relay_bypass.pull = DSY_GPIO_NOPULL;
-    dsy_gpio_init(&relay_bypass);
-
-    // Relay Input
-    relay_input.pin  = PIN_RELAY_IN;
-    relay_input.mode = DSY_GPIO_MODE_OUTPUT_PP;
-    relay_input.pull = DSY_GPIO_NOPULL;
-    dsy_gpio_init(&relay_input);
-}
-
-void DaisyBoonta::SetRelay(dsy_gpio relay, bool state)
-{
-    dsy_gpio_write(&relay, state); 
->>>>>>> d28d6fcf3816e5d2f2936a3b5496f318c52c12d3
 }

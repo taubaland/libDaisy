@@ -24,6 +24,7 @@
     <BSP_ID>com.sysprogs.arm.stm32</BSP_ID>
     <BSP_VERSION>2020.10</BSP_VERSION>
     <InPlaceBSPSubdir />
+    <RelativeBSPPath />
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
@@ -46,19 +47,20 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <GNUConfigurationType>Debug</GNUConfigurationType>
-    <ToolchainID>com.sysprogs.gnuarm.arm-eabi</ToolchainID>
-    <ToolchainVersion>8.3.1/8.0/r1</ToolchainVersion>
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>10.3.1/10.2.90/r1</ToolchainVersion>
     <GNUTargetType>StaticLibrary</GNUTargetType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
-    <ToolchainID>com.sysprogs.gnuarm.arm-eabi</ToolchainID>
-    <ToolchainVersion>8.3.1/8.0/r1</ToolchainVersion>
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>10.3.1/10.2.90/r1</ToolchainVersion>
     <GNUTargetType>StaticLibrary</GNUTargetType>
+    <GenerateHexFile>true</GenerateHexFile>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>src;Drivers/CMSIS-Device/ST/STM32H7xx/Include;Drivers/STM32H7xx_HAL_Driver/Inc;Drivers/CMSIS_5/CMSIS/Core/Include;Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;Middlewares/ST/STM32_USB_Device_Library/Core/Inc;Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;Middlewares/Third_Party/FatFs/src;src/sys;src/usbd;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG=1;__FPU_PRESENT=1;STM32H750xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;src/sys;src/usbd;src/usbh;Drivers/CMSIS_5/CMSIS/Core/Include;Drivers/CMSIS-Device/ST/STM32H7xx/Include;Drivers/STM32H7xx_HAL_Driver/Inc;Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;Middlewares/ST/STM32_USB_Device_Library/Core/Inc;Middlewares/Patched/ST/STM32_USB_Device_Library/Class/CDC/Inc;Middlewares/ST/STM32_USB_Host_Library/Core/Inc;Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc;Middlewares/ST/STM32_USB_Host_Library/Class/MIDI/Inc;Middlewares/Third_Party/FatFs/src;Middlewares/ST/STM32_USB_Device_Library/Class/AUDIO/Inc;Middlewares/ST/STM32_USB_Device_Library/Class/BillBoard/Inc;Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;__FPU_PRESENT=1;STM32H750xx;FILEIO_ENABLE_FATFS_READER;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>O0</Optimization>
       <AdditionalOptions />
       <CLanguageStandard>GNU11</CLanguageStandard>
@@ -66,9 +68,9 @@
       <InlineFunctions>true</InlineFunctions>
     </ClCompile>
     <Link>
-      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
-      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
-      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLinkerInputs>%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <LinkerScript>core/STM32H750IB_flash.lds</LinkerScript>
       <AdditionalOptions />
     </Link>
@@ -87,18 +89,24 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>Drivers/CMSIS-Device/ST/STM32H7xx/Include;Drivers/STM32H7xx_HAL_Driver/Inc;Drivers/CMSIS_5/CMSIS/Core/Include;Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;Middlewares/ST/STM32_USB_Device_Library/Core/Inc;Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;Middlewares/Third_Party/FatFs/src;src;src/sys;src/usbd;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG=1;RELEASE=1;__FPU_PRESENT=1;STM32H750xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;src/sys;src/usbd;src/usbh;Drivers/CMSIS_5/CMSIS/Core/Include;Drivers/CMSIS-Device/ST/STM32H7xx/Include;Drivers/STM32H7xx_HAL_Driver/Inc;Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;Middlewares/ST/STM32_USB_Device_Library/Core/Inc;Middlewares/Patched/ST/STM32_USB_Device_Library/Class/CDC/Inc;Middlewares/ST/STM32_USB_Host_Library/Core/Inc;Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc;Middlewares/ST/STM32_USB_Host_Library/Class/MIDI/Inc;Middlewares/Third_Party/FatFs/src;Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG=1;RELEASE=1;__FPU_PRESENT=1;STM32H750xx;FILEIO_ENABLE_FATFS_READER;;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctions>true</InlineFunctions>
       <WarningLevel>All</WarningLevel>
       <CLanguageStandard>GNU11</CLanguageStandard>
       <CPPLanguageStandard>GNUPP14</CPPLanguageStandard>
+      <AdditionalOptions />
+      <WarnOnDroppedAttributes>Disabled</WarnOnDroppedAttributes>
+      <WarnOnStrictAliasing>Disabled</WarnOnStrictAliasing>
+      <WarnOnIgnoredRegister>Disabled</WarnOnIgnoredRegister>
+      <Optimization>O0</Optimization>
     </ClCompile>
     <Link>
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
       <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
       <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <LinkerScript>core/STM32H750IB_flash.lds</LinkerScript>
+      <AdditionalOptions />
     </Link>
     <ToolchainSettingsContainer>
       <InstructionSet>THUMB</InstructionSet>
@@ -117,7 +125,284 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ItemGroup>
-    <ClCompile Include="Drivers\CMSIS\Core\Template\ARMv8-M\main_s.c" />
+    <None Include="libdaisy-Debug.vgdbsettings" />
+    <None Include="libdaisy-Release.vgdbsettings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Middlewares\Patched\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c" />
+    <ClCompile Include="src\daisy_boonta.cpp" />
+    <ClCompile Include="src\daisy_field.cpp" />
+    <ClCompile Include="src\daisy_legio.cpp" />
+    <ClCompile Include="src\daisy_patch.cpp" />
+    <ClCompile Include="src\daisy_patch_sm.cpp" />
+    <ClCompile Include="src\daisy_petal.cpp" />
+    <ClCompile Include="src\daisy_pod.cpp" />
+    <ClCompile Include="src\daisy_seed.cpp" />
+    <ClCompile Include="src\daisy_versio.cpp" />
+    <ClCompile Include="src\dev\codec_ak4556.cpp" />
+    <ClCompile Include="src\dev\codec_pcm3060.cpp" />
+    <ClCompile Include="src\dev\codec_wm8731.cpp" />
+    <ClCompile Include="src\dev\lcd_hd44780.cpp" />
+    <ClCompile Include="src\dev\sdram.cpp" />
+    <ClCompile Include="src\dev\sr_595.cpp" />
+    <ClCompile Include="src\hid\audio.cpp" />
+    <ClCompile Include="src\hid\ctrl.cpp" />
+    <ClCompile Include="src\hid\encoder.cpp" />
+    <ClCompile Include="src\hid\gatein.cpp" />
+    <ClCompile Include="src\hid\led.cpp" />
+    <ClCompile Include="src\hid\logger.cpp" />
+    <ClCompile Include="src\hid\midi.cpp" />
+    <ClCompile Include="src\hid\midi_parser.cpp" />
+    <ClCompile Include="src\hid\parameter.cpp" />
+    <ClCompile Include="src\hid\rgb_led.cpp" />
+    <ClCompile Include="src\hid\switch.cpp" />
+    <ClCompile Include="src\hid\usb.cpp" />
+    <ClCompile Include="src\hid\usb_host.cpp" />
+    <ClCompile Include="src\hid\usb_midi.cpp" />
+    <ClCompile Include="src\per\adc.cpp" />
+    <ClCompile Include="src\per\dac.cpp" />
+    <ClCompile Include="src\per\gpio.cpp" />
+    <ClCompile Include="src\per\i2c.cpp" />
+    <ClCompile Include="src\per\pwm.cpp" />
+    <ClCompile Include="src\per\qspi.cpp" />
+    <ClCompile Include="src\per\rng.cpp" />
+    <ClCompile Include="src\per\sai.cpp" />
+    <ClCompile Include="src\per\sdmmc.cpp" />
+    <ClCompile Include="src\per\spi.cpp" />
+    <ClCompile Include="src\per\spiMultislave.cpp" />
+    <ClCompile Include="src\per\tim.cpp" />
+    <ClCompile Include="src\per\uart.cpp" />
+    <ClCompile Include="src\sys\dma.c" />
+    <ClCompile Include="src\sys\fatfs.cpp" />
+    <ClCompile Include="src\sys\system.cpp" />
+    <ClCompile Include="src\sys\system_stm32h7xx.c" />
+    <ClCompile Include="src\ui\AbstractMenu.cpp" />
+    <ClCompile Include="src\ui\FullScreenItemMenu.cpp" />
+    <ClCompile Include="src\ui\UI.cpp" />
+    <ClCompile Include="src\usbd\usbd_cdc_if.c" />
+    <ClCompile Include="src\usbd\usbd_conf.c" />
+    <ClCompile Include="src\usbd\usbd_desc.c" />
+    <ClCompile Include="src\usbh\usbh_conf.c" />
+    <ClCompile Include="src\util\bsp_sd_diskio.c" />
+    <ClCompile Include="src\util\color.cpp" />
+    <ClCompile Include="src\util\MappedValue.cpp" />
+    <ClCompile Include="src\util\oled_fonts.c" />
+    <ClCompile Include="src\util\sd_diskio.c" />
+    <ClCompile Include="src\util\unique_id.c" />
+    <ClCompile Include="src\util\usbh_diskio.c" />
+    <ClCompile Include="src\util\WaveTableLoader.cpp" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h723xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h725xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h730xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h730xxq.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h733xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h735xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h742xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h743xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h745xg.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h745xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h747xg.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h747xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h750xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h753xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h755xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h757xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h7a3xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h7a3xxq.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h7b0xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h7b0xxq.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h7b3xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h7b3xxq.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\stm32h7xx.h" />
+    <ClInclude Include="Drivers\CMSIS-Device\ST\STM32H7xx\Include\system_stm32h7xx.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\cachel1_armv7.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\cmsis_armcc.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\cmsis_armclang.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\cmsis_armclang_ltm.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\cmsis_compiler.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\cmsis_gcc.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\cmsis_iccarm.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\cmsis_version.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_armv81mml.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_armv8mbl.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_armv8mml.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_cm0.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_cm0plus.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_cm1.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_cm23.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_cm3.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_cm33.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_cm35p.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_cm4.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_cm55.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_cm7.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_cm85.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_sc000.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_sc300.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\core_starmc1.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\mpu_armv7.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\mpu_armv8.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\pac_armv81.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\pmu_armv8.h" />
+    <ClInclude Include="Drivers\CMSIS_5\CMSIS\Core\Include\tz_context.h" />
+    <ClInclude Include="Middlewares\Patched\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h" />
+    <ClInclude Include="src\daisy.h" />
+    <ClInclude Include="src\daisy_boonta.h" />
+    <ClInclude Include="src\daisy_core.h" />
+    <ClInclude Include="src\daisy_field.h" />
+    <ClInclude Include="src\daisy_legio.h" />
+    <ClInclude Include="src\daisy_patch.h" />
+    <ClInclude Include="src\daisy_patch_sm.h" />
+    <ClInclude Include="src\daisy_petal.h" />
+    <ClInclude Include="src\daisy_pod.h" />
+    <ClInclude Include="src\daisy_seed.h" />
+    <ClInclude Include="src\daisy_versio.h" />
+    <ClInclude Include="src\version.h" />
+    <ClInclude Include="src\dev\apds9960.h" />
+    <ClInclude Include="src\dev\codec_ak4556.h" />
+    <ClInclude Include="src\dev\codec_pcm3060.h" />
+    <ClInclude Include="src\dev\codec_wm8731.h" />
+    <ClInclude Include="src\dev\dotstar.h" />
+    <ClInclude Include="src\dev\dps310.h" />
+    <ClInclude Include="src\dev\flash_IS25LP064A.h" />
+    <ClInclude Include="src\dev\flash_IS25LP080D.h" />
+    <ClInclude Include="src\dev\icm20948.h" />
+    <ClInclude Include="src\dev\lcd_hd44780.h" />
+    <ClInclude Include="src\dev\leddriver.h" />
+    <ClInclude Include="src\dev\max11300.h" />
+    <ClInclude Include="src\dev\mcp23x17.h" />
+    <ClInclude Include="src\dev\mpr121.h" />
+    <ClInclude Include="src\dev\neopixel.h" />
+    <ClInclude Include="src\dev\neotrellis.h" />
+    <ClInclude Include="src\dev\oled_sh1106.h" />
+    <ClInclude Include="src\dev\oled_ssd130x.h" />
+    <ClInclude Include="src\dev\oled_ssd1327.h" />
+    <ClInclude Include="src\dev\oled_ssd1351.h" />
+    <ClInclude Include="src\dev\sdram.h" />
+    <ClInclude Include="src\dev\sr_4021.h" />
+    <ClInclude Include="src\dev\sr_595.h" />
+    <ClInclude Include="src\dev\tlv493d.h" />
+    <ClInclude Include="src\hid\audio.h" />
+    <ClInclude Include="src\hid\ctrl.h" />
+    <ClInclude Include="src\hid\encoder.h" />
+    <ClInclude Include="src\hid\gatein.h" />
+    <ClInclude Include="src\hid\led.h" />
+    <ClInclude Include="src\hid\logger.h" />
+    <ClInclude Include="src\hid\logger_impl.h" />
+    <ClInclude Include="src\hid\midi.h" />
+    <ClInclude Include="src\hid\MidiEvent.h" />
+    <ClInclude Include="src\hid\midi_parser.h" />
+    <ClInclude Include="src\hid\parameter.h" />
+    <ClInclude Include="src\hid\rgb_led.h" />
+    <ClInclude Include="src\hid\switch.h" />
+    <ClInclude Include="src\hid\switch3.h" />
+    <ClInclude Include="src\hid\usb.h" />
+    <ClInclude Include="src\hid\usb_host.h" />
+    <ClInclude Include="src\hid\usb_midi.h" />
+    <ClInclude Include="src\hid\disp\color_display.h" />
+    <ClInclude Include="src\hid\disp\display.h" />
+    <ClInclude Include="src\hid\disp\graphics_common.h" />
+    <ClInclude Include="src\hid\disp\oled_color_display.h" />
+    <ClInclude Include="src\hid\disp\oled_display.h" />
+    <ClInclude Include="src\per\adc.h" />
+    <ClInclude Include="src\per\dac.h" />
+    <ClInclude Include="src\per\gpio.h" />
+    <ClInclude Include="src\per\i2c.h" />
+    <ClInclude Include="src\per\pwm.h" />
+    <ClInclude Include="src\per\qspi.h" />
+    <ClInclude Include="src\per\rng.h" />
+    <ClInclude Include="src\per\sai.h" />
+    <ClInclude Include="src\per\sdmmc.h" />
+    <ClInclude Include="src\per\spi.h" />
+    <ClInclude Include="src\per\spiMultislave.h" />
+    <ClInclude Include="src\per\tim.h" />
+    <ClInclude Include="src\per\uart.h" />
+    <ClInclude Include="src\sys\dma.h" />
+    <ClInclude Include="src\sys\fatfs.h" />
+    <ClInclude Include="src\sys\ffconf.h" />
+    <ClInclude Include="src\sys\stm32h7xx_hal_conf.h" />
+    <ClInclude Include="src\sys\system.h" />
+    <ClInclude Include="src\ui\AbstractMenu.h" />
+    <ClInclude Include="src\ui\ButtonMonitor.h" />
+    <ClInclude Include="src\ui\FullScreenItemMenu.h" />
+    <ClInclude Include="src\ui\PotMonitor.h" />
+    <ClInclude Include="src\ui\UI.h" />
+    <ClInclude Include="src\ui\UiEventQueue.h" />
+    <ClInclude Include="src\usbd\usbd_cdc_if.h" />
+    <ClInclude Include="src\usbd\usbd_conf.h" />
+    <ClInclude Include="src\usbd\usbd_desc.h" />
+    <ClInclude Include="src\usbh\usbh_conf.h" />
+    <ClInclude Include="src\util\bsp_sd_diskio.h" />
+    <ClInclude Include="src\util\color.h" />
+    <ClInclude Include="src\util\CpuLoadMeter.h" />
+    <ClInclude Include="src\util\FIFO.h" />
+    <ClInclude Include="src\util\FileReader.h" />
+    <ClInclude Include="src\util\FileTable.h" />
+    <ClInclude Include="src\util\FixedCapStr.h" />
+    <ClInclude Include="src\util\hal_map.h" />
+    <ClInclude Include="src\util\MappedValue.h" />
+    <ClInclude Include="src\util\oled_fonts.h" />
+    <ClInclude Include="src\util\PersistentStorage.h" />
+    <ClInclude Include="src\util\ringbuffer.h" />
+    <ClInclude Include="src\util\scopedirqblocker.h" />
+    <ClInclude Include="src\util\sd_diskio.h" />
+    <ClInclude Include="src\util\Stack.h" />
+    <ClInclude Include="src\util\unique_id.h" />
+    <ClInclude Include="src\util\usbh_diskio.h" />
+    <ClInclude Include="src\util\VoctCalibration.h" />
+    <ClInclude Include="src\util\WaveTableLoader.h" />
+    <ClInclude Include="src\util\WavParser.h" />
+    <ClInclude Include="src\util\WavPlayer.h" />
+    <ClInclude Include="src\util\WavWriter.h" />
+    <ClInclude Include="src\util\wav_format.h" />
+    <None Include="stm32.props" />
+    <ClCompile Include="$(BSP_ROOT)\STM32H7xxxx\StartupFiles\startup_stm32h750xx.c" />
+    <None Include="stm32.xml" />
+    <None Include="Middlewares\ST\CMakeLists.txt" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_conf_template.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_core.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_desc_template.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Host_Library\Class\MIDI\Src\usbh_midi.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_bot.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_scsi.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_conf_template.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ctlreq.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_ioreq.c" />
+    <ClCompile Include="Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_pipes.c" />
+    <None Include="Middlewares\Third_Party\FatFs\CMakeLists.txt" />
+    <ClCompile Include="Middlewares\Third_Party\FatFs\src\diskio.c" />
+    <ClCompile Include="Middlewares\Third_Party\FatFs\src\ff.c" />
+    <ClCompile Include="Middlewares\Third_Party\FatFs\src\ff_gen_drv.c" />
+    <ClCompile Include="Middlewares\Third_Party\FatFs\src\option\ccsbcs.c" />
+    <ClCompile Include="Middlewares\Third_Party\FatFs\src\option\syscall.c" />
+    <ClCompile Include="Middlewares\Third_Party\FatFs\src\option\unicode.c" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_conf_template.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_desc_template.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Host_Library\Class\MIDI\Inc\usbh_midi.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc\usbh_msc.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc\usbh_msc_bot.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc\usbh_msc_scsi.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_conf_template.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_core.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_ctlreq.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_def.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_ioreq.h" />
+    <ClInclude Include="Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_pipes.h" />
+    <ClInclude Include="Middlewares\Third_Party\FatFs\src\diskio.h" />
+    <ClInclude Include="Middlewares\Third_Party\FatFs\src\ff.h" />
+    <ClInclude Include="Middlewares\Third_Party\FatFs\src\ffconf_template.h" />
+    <ClInclude Include="Middlewares\Third_Party\FatFs\src\ff_gen_drv.h" />
+    <ClInclude Include="Middlewares\Third_Party\FatFs\src\integer.h" />
+    <None Include="Drivers\CMakeLists.txt" />
+    <ClCompile Include="Drivers\Patched\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_sdmmc.c" />
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c" />
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc.c" />
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc_ex.c" />
@@ -235,102 +520,14 @@
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_rcc.c" />
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_rng.c" />
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_rtc.c" />
-    <ClCompile Include="Drivers\Patched\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_sdmmc.c" />
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_spi.c" />
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_swpmi.c" />
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_tim.c" />
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_usart.c" />
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_usb.c" />
     <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_utils.c" />
-    <ClCompile Include="Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c" />
-    <ClCompile Include="Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_core.c" />
-    <ClCompile Include="Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c" />
-    <ClCompile Include="Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c" />
-    <ClCompile Include="Middlewares\Third_Party\FatFs\src\diskio.c" />
-    <ClCompile Include="Middlewares\Third_Party\FatFs\src\ff.c" />
-    <ClCompile Include="Middlewares\Third_Party\FatFs\src\ff_gen_drv.c" />
-    <ClCompile Include="src\daisy_field.cpp" />
-    <ClCompile Include="src\daisy_patch.cpp" />
-    <ClCompile Include="src\daisy_petal.cpp" />
-    <ClCompile Include="src\daisy_pod.cpp" />
-    <ClCompile Include="src\daisy_seed.cpp" />
-    <ClCompile Include="src\daisy_versio.cpp" />
-    <ClCompile Include="src\daisy_legio.cpp" />
-    <ClCompile Include="src\daisy_boonta.cpp" />
-    <ClCompile Include="src\dev\codec_ak4556.cpp" />
-    <ClCompile Include="src\dev\codec_pcm3060.cpp" />
-    <ClCompile Include="src\dev\codec_wm8731.cpp" />
-    <ClCompile Include="src\dev\sdram.c" />
-    <ClCompile Include="src\dev\sr_595.cpp" />
-    <ClCompile Include="src\hid\audio.cpp" />
-    <ClCompile Include="src\hid\ctrl.cpp" />
-    <ClCompile Include="src\hid\encoder.cpp" />
-    <ClCompile Include="src\hid\gatein.cpp" />
-    <ClCompile Include="src\hid\led.cpp" />
-    <ClCompile Include="src\hid\logger.cpp" />
-    <ClCompile Include="src\hid\midi.cpp" />
-    <ClCompile Include="src\hid\oled_display.cpp" />
-    <ClCompile Include="src\hid\parameter.cpp" />
-    <ClCompile Include="src\hid\rgb_led.cpp" />
-    <ClCompile Include="src\hid\switch.cpp" />
-    <ClCompile Include="src\hid\usb.cpp" />
-    <ClCompile Include="src\hid\wavplayer.cpp" />
-    <ClCompile Include="src\per\adc.cpp" />
-    <ClCompile Include="src\per\dac.cpp" />
-    <ClCompile Include="src\per\gpio.c" />
-    <ClCompile Include="src\per\i2c.cpp" />
-    <ClCompile Include="src\per\qspi.c" />
-    <ClCompile Include="src\per\sai.cpp" />
-    <ClCompile Include="src\per\sdmmc.cpp" />
-    <ClCompile Include="src\per\spi.cpp" />
-    <ClCompile Include="src\per\tim.cpp" />
-    <ClCompile Include="src\per\uart.cpp" />
-    <ClCompile Include="src\sys\dma.c" />
-    <ClCompile Include="src\sys\fatfs.c" />
-    <ClCompile Include="src\sys\system.cpp" />
-    <ClCompile Include="src\sys\system_stm32h7xx.c" />
-    <ClCompile Include="src\usbd\usbd_cdc_if.c" />
-    <ClCompile Include="src\usbd\usbd_conf.c" />
-    <ClCompile Include="src\usbd\usbd_desc.c" />
-    <ClCompile Include="src\util\bsp_sd_diskio.c" />
-    <ClCompile Include="src\util\color.cpp" />
-    <ClCompile Include="src\util\hal_map.c" />
-    <ClCompile Include="src\util\oled_fonts.c" />
-    <ClCompile Include="src\util\sd_diskio.c" />
-    <ClCompile Include="src\util\unique_id.c" />
-    <ClCompile Include="src\util\WaveTableLoader.cpp" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\cachel1_armv7.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\cmsis_armcc.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\cmsis_armclang.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\cmsis_armclang_ltm.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\cmsis_compiler.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\cmsis_gcc.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\cmsis_iccarm.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\cmsis_version.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_armv81mml.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_armv8mbl.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_armv8mml.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_cm0.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_cm0plus.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_cm1.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_cm23.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_cm3.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_cm33.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_cm35p.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_cm4.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_cm55.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_cm7.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_cm85.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_sc000.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_sc300.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\core_starmc1.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\mpu_armv7.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\mpu_armv8.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\pac_armv81.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\pmu_armv8.h" />
-    <ClInclude Include="Drivers\CMSIS\Core\Include\tz_context.h" />
-    <ClInclude Include="Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h750xx.h" />
-    <ClInclude Include="Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h" />
+    <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\Legacy\stm32h7xx_hal_eth.c" />
+    <ClCompile Include="Drivers\STM32H7xx_HAL_Driver\Src\Legacy\stm32h7xx_hal_eth_ex.c" />
     <ClInclude Include="Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h" />
     <ClInclude Include="Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_adc.h" />
     <ClInclude Include="Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_adc_ex.h" />
@@ -463,79 +660,8 @@
     <ClInclude Include="Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_utils.h" />
     <ClInclude Include="Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_wwdg.h" />
     <ClInclude Include="Drivers\STM32H7xx_HAL_Driver\Inc\stm32_assert_template.h" />
-    <ClInclude Include="Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h" />
-    <ClInclude Include="Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h" />
-    <ClInclude Include="Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h" />
-    <ClInclude Include="Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h" />
-    <ClInclude Include="Middlewares\Third_Party\FatFs\src\diskio.h" />
-    <ClInclude Include="Middlewares\Third_Party\FatFs\src\ff.h" />
-    <ClInclude Include="Middlewares\Third_Party\FatFs\src\ff_gen_drv.h" />
-    <ClInclude Include="Middlewares\Third_Party\FatFs\src\integer.h" />
-    <ClInclude Include="src\daisy.h" />
-    <ClInclude Include="src\daisy_core.h" />
-    <ClInclude Include="src\daisy_field.h" />
-    <ClInclude Include="src\daisy_patch.h" />
-    <ClInclude Include="src\daisy_petal.h" />
-    <ClInclude Include="src\daisy_pod.h" />
-    <ClInclude Include="src\daisy_seed.h" />
-    <ClInclude Include="src\daisy_versio.h" />
-    <ClInclude Include="src\daisy_legio.h" />
-    <ClInclude Include="src\dev\codec_ak4556.h" />
-    <ClInclude Include="src\dev\codec_pcm3060.h" />
-    <ClInclude Include="src\dev\codec_wm8731.h" />
-    <ClInclude Include="src\dev\flash_IS25LP064A.h" />
-    <ClInclude Include="src\dev\flash_IS25LP080D.h" />
-    <ClInclude Include="src\dev\leddriver.h" />
-    <ClInclude Include="src\dev\sdram.h" />
-    <ClInclude Include="src\dev\sr_4021.h" />
-    <ClInclude Include="src\dev\sr_595.h" />
-    <ClInclude Include="src\hid\audio.h" />
-    <ClInclude Include="src\hid\ctrl.h" />
-    <ClInclude Include="src\hid\encoder.h" />
-    <ClInclude Include="src\hid\gatein.h" />
-    <ClInclude Include="src\hid\led.h" />
-    <ClInclude Include="src\hid\logger.h" />
-    <ClInclude Include="src\hid\logger_impl.h" />
-    <ClInclude Include="src\hid\midi.h" />
-    <ClInclude Include="src\hid\oled_display.h" />
-    <ClInclude Include="src\hid\parameter.h" />
-    <ClInclude Include="src\hid\rgb_led.h" />
-    <ClInclude Include="src\hid\switch.h" />
-    <ClInclude Include="src\hid\switch3.h" />
-    <ClInclude Include="src\hid\usb.h" />
-    <ClInclude Include="src\hid\wavplayer.h" />
-    <ClInclude Include="src\per\adc.h" />
-    <ClInclude Include="src\per\dac.h" />
-    <ClInclude Include="src\per\gpio.h" />
-    <ClInclude Include="src\per\i2c.h" />
-    <ClInclude Include="src\per\qspi.h" />
-    <ClInclude Include="src\per\sai.h" />
-    <ClInclude Include="src\per\sdmmc.h" />
-    <ClInclude Include="src\per\spi.h" />
-    <ClInclude Include="src\per\tim.h" />
-    <ClInclude Include="src\per\uart.h" />
-    <ClInclude Include="src\sys\stm32h7xx_hal_conf.h" />
-    <ClInclude Include="src\sys\dma.h" />
-    <ClInclude Include="src\sys\fatfs.h" />
-    <ClInclude Include="src\sys\ffconf.h" />
-    <ClInclude Include="src\sys\system.h" />
-    <ClInclude Include="src\usbd\usbd_cdc_if.h" />
-    <ClInclude Include="src\usbd\usbd_conf.h" />
-    <ClInclude Include="src\usbd\usbd_desc.h" />
-    <ClInclude Include="src\util\bsp_sd_diskio.h" />
-    <ClInclude Include="src\util\color.h" />
-    <ClInclude Include="src\util\hal_map.h" />
-    <ClInclude Include="src\util\oled_fonts.h" />
-    <ClInclude Include="src\util\ringbuffer.h" />
-    <ClInclude Include="src\util\scopedirqblocker.h" />
-    <ClInclude Include="src\util\sd_diskio.h" />
-    <ClInclude Include="src\util\unique_id.h" />
-    <ClInclude Include="src\util\WaveTableLoader.h" />
-    <ClInclude Include="src\util\WavWriter.h" />
-    <ClInclude Include="src\util\wav_format.h" />
-    <None Include="stm32.props" />
-    <None Include="libdaisy-Debug.vgdbsettings" />
-    <None Include="libdaisy-Release.vgdbsettings" />
-    <None Include="stm32.xml" />
+    <ClInclude Include="Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32h7xx_hal_eth_ex_legacy.h" />
+    <ClInclude Include="Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32h7xx_hal_eth_legacy.h" />
+    <ClInclude Include="Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h" />
   </ItemGroup>
 </Project>

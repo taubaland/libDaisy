@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<EmbeddedProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ToolchainID>com.sysprogs.gnuarm.arm-eabi</ToolchainID>
+<EmbeddedProfile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
   <ToolchainVersion>
-    <GCC>8.3.1</GCC>
-    <GDB>8.0</GDB>
+    <GCC>10.3.1</GCC>
+    <GDB>10.2.90</GDB>
     <Revision>1</Revision>
   </ToolchainVersion>
   <BspID>com.sysprogs.arm.stm32</BspID>
@@ -35,12 +35,54 @@
   </MCUProperties>
   <BSPSourceFolderName>Device-specific files</BSPSourceFolderName>
   <MCUMakFile>stm32.mak</MCUMakFile>
-  <ReferencedFrameworks />
+  <ReferencedFrameworks>
+    <string>com.sysprogs.embedded.semihosting_and_profiler</string>
+  </ReferencedFrameworks>
   <FrameworkProperties>
     <Entries>
       <KeyValue>
         <Key>com.sysprogs.bspoptions.stm32.ll_driver</Key>
         <Value>USE_FULL_LL_DRIVER</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.efp.semihosting.buffer_size</Key>
+        <Value>4096</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.efp.semihosting.stdio</Key>
+        <Value>1</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.efp.semihosting.blocking_mode</Key>
+        <Value>1</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.efp.profiling.semihosting_driver</Key>
+        <Value>1</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.efp.profiling.counter</Key>
+        <Value />
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.efp.profiling.address_validators</Key>
+        <Value />
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.efp.profiling.nosampling</Key>
+        <Value>1</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.efp.profiling.debugger_check</Key>
+        <Value />
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.efp.profiling.rtos</Key>
+        <Value>USE_FREERTOS_IF_FOUND</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.efp.profiling.hold_interrupts</Key>
+        <Value />
       </KeyValue>
     </Entries>
   </FrameworkProperties>

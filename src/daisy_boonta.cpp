@@ -43,15 +43,15 @@ enum LedOrder
     LED_FOOTSWITCH_1_R,
     LED_FOOTSWITCH_1_G,
     LED_FOOTSWITCH_1_B,
-    LED_SELECT_1_R,
-    LED_SELECT_1_G,
-    LED_SELECT_1_B,
     LED_SELECT_2_R,
-    LED_SELECT_2_G,
     LED_SELECT_2_B,
+    LED_SELECT_2_G,
     LED_SELECT_3_R,
-    LED_SELECT_3_G,
     LED_SELECT_3_B,
+    LED_SELECT_3_G,
+    LED_SELECT_1_R,
+    LED_SELECT_1_B,
+    LED_SELECT_1_G,
     LED_FOOTSWITCH_2_R,
     LED_FOOTSWITCH_2_G,
     LED_FOOTSWITCH_2_B,
@@ -236,15 +236,15 @@ void DaisyBoonta::SetFootSwitchLed(FootSwitchLed idx, Color color)
 
 void DaisyBoonta::SetSelectLed(SelectLed idx, float r, float g, float b)
 {
-    uint8_t r_addr[SELECT_LED_LAST] = { LED_SELECT_1_R,
-                                        LED_SELECT_2_R,
+    uint8_t r_addr[SELECT_LED_LAST] = { LED_SELECT_2_R,
+                                        LED_SELECT_1_R,
                                         LED_SELECT_3_R};
-    uint8_t g_addr[SELECT_LED_LAST] = { LED_SELECT_1_G,
-                                        LED_SELECT_2_G,
-                                        LED_SELECT_3_G};
-    uint8_t b_addr[SELECT_LED_LAST] = { LED_SELECT_1_B,
-                                        LED_SELECT_2_B,
+    uint8_t g_addr[SELECT_LED_LAST] = { LED_SELECT_2_B,
+                                        LED_SELECT_1_B,
                                         LED_SELECT_3_B};
+    uint8_t b_addr[SELECT_LED_LAST] = { LED_SELECT_2_G,
+                                        LED_SELECT_1_G,
+                                        LED_SELECT_3_G};
 
     led_driver_.SetLed(r_addr[idx], r);
     led_driver_.SetLed(g_addr[idx], g);
@@ -272,10 +272,10 @@ void DaisyBoonta::InitSwitches()
     };
 
     constexpr Pin fsw_pin_numbers[SW_LAST] = {
-        SW_SEL_1_PIN,
         SW_SEL_2_PIN,
-        SW_FS_1_PIN,
+        SW_SEL_1_PIN,
         SW_FS_2_PIN,
+        SW_FS_1_PIN,
     };
 
     for(size_t i = 0; i < SW_LAST; i++)
@@ -309,12 +309,12 @@ void DaisyBoonta::InitAnalogControls()
     // KNOB_LAST + 1 because of Expression input
     AdcChannelConfig cfg[KNOB_LAST + 1];
     // Init with Single Pins
-    cfg[KNOB_1].InitSingle(PIN_KNOB_1);
-    cfg[KNOB_2].InitSingle(PIN_KNOB_2);
-    cfg[KNOB_3].InitSingle(PIN_KNOB_3);
-    cfg[KNOB_4].InitSingle(PIN_KNOB_4);
-    cfg[KNOB_5].InitSingle(PIN_KNOB_5);
-    cfg[KNOB_6].InitSingle(PIN_KNOB_6);
+    cfg[KNOB_1].InitSingle(PIN_KNOB_6);
+    cfg[KNOB_2].InitSingle(PIN_KNOB_5);
+    cfg[KNOB_3].InitSingle(PIN_KNOB_4);
+    cfg[KNOB_4].InitSingle(PIN_KNOB_3);
+    cfg[KNOB_5].InitSingle(PIN_KNOB_2);
+    cfg[KNOB_6].InitSingle(PIN_KNOB_1);
     // Special case for Expression
     cfg[KNOB_LAST].InitSingle(PIN_EXPRESSION);
 

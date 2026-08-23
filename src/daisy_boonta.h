@@ -13,18 +13,15 @@ namespace daisy
 class DaisyBoonta
 {
   public:
-    /** Switches */
+    /** Three-position toggle switches.
+     *  One entry per physical switch, so TOG_SW_LAST is a usable count. The
+     *  individual A/B pins of each switch are an implementation detail of
+     *  InitSwitches() and are not exposed here. */
     enum TogSw
     {
-        TOG_SW_1,   /**< Toggle */
-        TOG_SW_2,   /**< Toggle */
-        TOG_SW_3,   /**< Toggle */
-        TOG_SW_1_A,   /**< Toggle */
-        TOG_SW_1_B,   /**< Toggle */
-        TOG_SW_2_A,   /**< Toggle */
-        TOG_SW_2_B,   /**< Toggle */
-        TOG_SW_3_A,   /**< Toggle */
-        TOG_SW_3_B,   /**< Toggle */
+        TOG_SW_1,    /**< Toggle */
+        TOG_SW_2,    /**< Toggle */
+        TOG_SW_3,    /**< Toggle */
         TOG_SW_LAST, /**< Last enum item */
     };
 
@@ -229,7 +226,7 @@ class DaisyBoonta
     AnalogControl knob[KNOB_LAST]; /**< & */
     AnalogControl expression;      /**< & */
     Switch        switches[SW_LAST]; /**< & */
-    Switch3       toggle_switches[TOG_SW_LAST / 2]; /**< & */
+    Switch3       toggle_switches[TOG_SW_LAST]; /**< & */
 
     RgbLed    footswitch_led[FOOTSWITCH_LED_LAST]; /**< & */
     RgbLed    select_led[SELECT_LED_LAST]; /**< & */

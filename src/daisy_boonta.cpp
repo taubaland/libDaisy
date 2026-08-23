@@ -184,10 +184,9 @@ float DaisyBoonta::GetExpression()
 
 void DaisyBoonta::ProcessDigitalControls()
 {
-    for(size_t i = 0; i < TOG_SW_LAST; i+=2)
-    {
-        toggle_switches[i].Read();
-    }
+    // Switch3 holds no state -- Read() is a pure function of its two pins, so
+    // the toggles need no per-tick servicing. GetSwitchPosition() reads them
+    // live.
     for(size_t i = 0; i < SW_LAST; i++)
     {
         switches[i].Debounce();
@@ -262,12 +261,13 @@ void DaisyBoonta::SetSelectLed(SelectLed idx, Color color)
 
 void DaisyBoonta::InitSwitches()
 {
+    // Two pins per toggle, in TogSw order.
     constexpr Pin pin_numbers[TOG_SW_LAST * 2] = {
-        TOG_SW_1_A_PIN, 
-        TOG_SW_1_B_PIN, 
-        TOG_SW_2_A_PIN, 
-        TOG_SW_2_B_PIN, 
-        TOG_SW_3_A_PIN, 
+        TOG_SW_1_A_PIN,
+        TOG_SW_1_B_PIN,
+        TOG_SW_2_A_PIN,
+        TOG_SW_2_B_PIN,
+        TOG_SW_3_A_PIN,
         TOG_SW_3_B_PIN,
     };
 
@@ -283,9 +283,9 @@ void DaisyBoonta::InitSwitches()
         switches[i].Init(fsw_pin_numbers[i]);
     }
 
-    for(size_t i = 0; i < (TOG_SW_LAST / 2); i++)
+    for(size_t i = 0; i < TOG_SW_LAST; i++)
     {
-        toggle_switches[i].Init(pin_numbers[i*2], pin_numbers[i*2+1]);
+        toggle_switches[i].Init(pin_numbers[i * 2], pin_numbers[i * 2 + 1]);
     }
 }
 
@@ -367,13 +367,13 @@ int DaisyBoonta::GetSwitchPosition(TogSw s)
 bool DaisyBoonta::GetButtonPressed(Sw s)
 {
     size_t idx;
-    idx = s < SW_LAST ? s : TOG_SW_1;
+    idx = s < SW_LAST ? s : SW_SEL_1;
     return switches[idx].Pressed();
 }
 
 bool DaisyBoonta::CheckButtonLongPress(Sw s)
 {
     size_t idx;
-    idx = s < SW_LAST ? s : TOG_SW_1;
+    idx = s < SW_LAST ? s : SW_SEL_1;
     return (switches[idx].TimeHeldMs() > 500);
 }

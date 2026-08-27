@@ -68,12 +68,23 @@
 #define USBD_LANGID_STRING 1033
 #define USBD_MANUFACTURER_STRING "Electrosmith"
 // HS
-#define USBD_PID_HS 22336 // replace with our PID when we have one.
+// 22336 is 0x5740, the generic STMicro CDC pair that ships in every ST USB
+// template. It is the single most collided VID/PID in the STM32 world, and a
+// host that has ever had a CDC driver bound to it -- a Monome Crow, an Arduino
+// clone, anything Zadig has been pointed at -- will apply that driver to a
+// Daisy running USB MIDI, because a hardware-ID match outranks the device's own
+// compatible IDs. usbser then fails to start on a device that is not a serial
+// port, and the MIDI function never reaches usbaudio.sys. Diagnosed on a real
+// board; see boonta/MultiEffect/README.md.
+//
+// Distinct values per peripheral, too: the two already carry different product
+// strings, so sharing one PID was never right.
+#define USBD_PID_HS 55830 // 0xDA16
 #define USBD_PRODUCT_STRING_HS "Daisy Seed External"
 #define USBD_CONFIGURATION_STRING_HS "CDC Config"
 #define USBD_INTERFACE_STRING_HS "CDC Interface"
 // FS
-#define USBD_PID_FS 22336 // replace with our PID when we have one.
+#define USBD_PID_FS 55829 // 0xDA15 -- see the note on USBD_PID_HS above
 #define USBD_PRODUCT_STRING_FS "Daisy Seed Built In"
 #define USBD_CONFIGURATION_STRING_FS "CDC Config"
 #define USBD_INTERFACE_STRING_FS "CDC Interface"

@@ -231,9 +231,8 @@ class DaisyBoonta
     RgbLed    footswitch_led[FOOTSWITCH_LED_LAST]; /**< & */
     RgbLed    select_led[SELECT_LED_LAST]; /**< & */
     
-    GPIO relay_output; /**< &  */
-    GPIO relay_bypass; /**< &  */
-    GPIO relay_input;  /**< &  */
+    GPIO relay_output; /**< K1: DAC into the output buffers */
+    GPIO relay_input;  /**< K2: input jack into the codec ADC */
   private:
     void SetHidUpdateRates();
     void InitSwitches();

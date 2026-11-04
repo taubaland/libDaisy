@@ -33,10 +33,20 @@ constexpr Pin PIN_KNOB_6     = seed::D21;
 constexpr Pin PIN_MIDI_OUT   = seed::D13;
 constexpr Pin PIN_MIDI_IN    = seed::D14;
 
-//Relay
-constexpr Pin PIN_RELAY_OUT     = seed::D22;
-constexpr Pin PIN_RELAY_BYPASS  = seed::D23;
-constexpr Pin PIN_RELAY_IN      = seed::D24;
+// Relays. Two DPDT parts, each driven through a 2N7002: K1 on D22 switches
+// the DAC into the output buffers, K2 on D23 switches the input jack into the
+// codec ADC. Both energised is the pedal in circuit.
+//
+// D23 was declared as PIN_RELAY_BYPASS and D24 as PIN_RELAY_IN, which had the
+// input relay on the wrong pin and invented a third. All eight combinations
+// were swept on the board with the two paths measured separately -- a tone
+// from the DAC captured at the output jack, and an external tone read back
+// through the firmware's own input peak. D22 gates the DAC, D23 gates the ADC,
+// and D24 changes neither: its four pairs came back identical. D24 is also
+// SAI2_MCLK_B, so the stale declaration claimed a pin with an alternate audio
+// function.
+constexpr Pin PIN_RELAY_OUT = seed::D22;
+constexpr Pin PIN_RELAY_IN  = seed::D23;
 
 enum LedOrder
 {
@@ -339,12 +349,8 @@ void DaisyBoonta::InitRelays()
     // Relay Output
     relay_output.Init(PIN_RELAY_OUT, GPIO::Mode::OUTPUT, GPIO::Pull::NOPULL);
 
-    // Relay Bypass
-    relay_bypass.Init(PIN_RELAY_BYPASS, GPIO::Mode::OUTPUT, GPIO::Pull::NOPULL);
-    
     // Relay Input
     relay_input.Init(PIN_RELAY_IN, GPIO::Mode::OUTPUT, GPIO::Pull::NOPULL);
-
 }
 
 void DaisyBoonta::SetRelay(GPIO relay, bool state)

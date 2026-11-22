@@ -28,6 +28,7 @@ daisy_field \
 daisy_versio \
 daisy_legio \
 daisy_boonta \
+daisy_sunhaus \
 daisy_patch_sm \
 daisy_boonta \
 sys/fatfs \
